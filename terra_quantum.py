@@ -203,7 +203,7 @@ if __name__ == "__main__":
 
     # Шифрование
     cipher = TerraQuantum_v2_1(key, nonce=1)
-    msg = b"Привет, мир! Это Terra-Quantum."
+    msg = b"Hello, World! This is Terra-Quantum."
     enc = cipher.encrypt(msg, nonce=42)
     print(f"📝 Зашифровано: {enc.hex()[:32]}...")
 
