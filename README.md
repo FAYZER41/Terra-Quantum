@@ -6,7 +6,11 @@
 
 ```bash
 pip install -e .
-Использование
+```
+
+## Использование
+
+```python
 from terra_quantum import TerraQuantum_v2_1
 
 # Генерация ключа
@@ -19,11 +23,18 @@ encrypted = cipher.encrypt(b"Hello, World!")
 # Расшифрование
 decrypted = cipher.decrypt(encrypted)
 print(decrypted)  # b'Hello, World!'
-ТЕСТЫ
+```
+
+## Тесты
+
+```bash
 pytest tests/
-Лицензия
+```
+
+## Лицензия
 
 MIT
+
 ## Контакты
 
 Автор: Гусев Леонид  
