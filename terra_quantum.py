@@ -156,7 +156,7 @@ class TerraQuantum_v2_1:
         test_key = b'\x00' * 32
         cipher = TerraQuantum_v2_1(test_key, nonce=0)
         stream = cipher.generate_stream(8)
-        expected = "f9e03872b9b8d54f"  
+        expected = "f9e03872b9b8d54f"
         if stream.hex() != expected:
             print(f"❌ Тест провален: {stream.hex()} != {expected}")
             return False
@@ -165,21 +165,28 @@ class TerraQuantum_v2_1:
 
 if __name__ == "__main__":
     print("=" * 60)
-    print("ТЕРРА-КВАНТ v2.1 — ФИНАЛЬНАЯ ВЕРСИЯ")
+    print("TERRA-QUANTUM v2.1 — ТЕСТ ШИФРОВАНИЯ")
     print("=" * 60)
 
     key = TerraQuantum_v2_1.generate_key(32)
-    print(f"\n🔑 Ключ: {key.hex()[:32]}...")
+    print(f"\n🔑 Ключ: {key.hex()}")
 
-    cipher = TerraQuantum_v2_1(key, nonce=1)
-    msg = b"Hello, World! This is Terra-Quantum."
-    enc = cipher.encrypt(msg)
-    print(f"📝 Зашифровано: {enc.hex()[:32]}...")
+    text = "Привет, Хабр! Меня зовут Леонид."
+    print(f"📝 Исходный текст: {text}")
+    original_bytes = text.encode('utf-8')
 
-    dec = cipher.decrypt(enc)
-    print(f"📖 Расшифровано: {dec.decode()}")
+    cipher_enc = TerraQuantum_v2_1(key, nonce=42)
+    encrypted = cipher_enc.encrypt(original_bytes)
+    print(f"🔒 Зашифровано (hex): {encrypted.hex()}")
 
-    if dec == msg:
+    cipher_dec = TerraQuantum_v2_1(key, nonce=42)
+    decrypted_bytes = cipher_dec.decrypt(encrypted)
+
+    if original_bytes == decrypted_bytes:
         print("\n✅ ВСЁ РАБОТАЕТ ИДЕАЛЬНО!")
+        try:
+            print(f"🔓 Расшифровано: {decrypted_bytes.decode('utf-8')}")
+        except:
+            print(f"🔓 Расшифровано (байты): {decrypted_bytes}")
     else:
-        print("\n❌ Ошибка расшифрования")
+        print("\n❌ Ошибка расшифрования!")
