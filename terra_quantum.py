@@ -171,7 +171,7 @@ if __name__ == "__main__":
     key = TerraQuantum_v2_1.generate_key(32)
     print(f"\n🔑 Ключ: {key.hex()}")
 
-    text = "Привет, Хабр! Меня зовут Леонид."
+    text = "Всем приве, это обычный Тест12345"
     print(f"📝 Исходный текст: {text}")
     original_bytes = text.encode('utf-8')
 
